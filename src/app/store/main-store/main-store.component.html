@@ -1,0 +1,63 @@
+<section class="overview">
+    <div class="card-container" *ngIf="!received">
+        Waiting for data or an error has happened! 🚀
+    </div>
+    <div class="card-container" *ngIf="received">
+        <div class="card" *ngFor="let tour of myTours">
+            <div class="card__header">
+                <div class="card__picture">
+                    <div class="card__picture-overlay">&nbsp;</div>
+                    <img [src]="tour.imageCover | images" alt="{{tour.slug}}" class="card__picture-img" />
+                </div>
+
+                <h3 class="heading-tertirary">
+                    <span>{{tour.name}}</span>
+                </h3>
+            </div>
+
+            <div class="card__details">
+                <h4 class="card__sub-heading">{{tour.difficulty}} {{tour.duration}}-day tour</h4>
+                <p class="card__text">
+                    {{tour.summary}}
+                </p>
+                <div class="card__data">
+                    <svg class="card__icon">
+              <use xlink:href="assets/img/icons.svg#icon-map-pin"></use>
+            </svg>
+                    <span>{{ getStartLocation(tour, 'description') }}</span>
+                </div>
+                <div class="card__data">
+                    <svg class="card__icon">
+              <use xlink:href="assets/img/icons.svg#icon-calendar"></use>
+            </svg>
+                    <span *ngIf="tour.startDates.length">{{tour.startDates[0] | date: 'MMMM, y'}}</span>
+                    <span *ngIf="!tour.startDates.length">Not found</span>
+                </div>
+                <div class="card__data">
+                    <svg class="card__icon">
+              <use xlink:href="assets/img/icons.svg#icon-flag"></use>
+            </svg>
+                    <span>{{ tour.locations.length }} stops</span>
+                </div>
+                <div class="card__data">
+                    <svg class="card__icon">
+              <use xlink:href="assets/img/icons.svg#icon-user"></use>
+            </svg>
+                    <span>{{ tour.maxGroupSize }} people</span>
+                </div>
+            </div>
+
+            <div class="card__footer">
+                <p>
+                    <span class="card__footer-value">${{ tour.price }}</span>
+                    <span class="card__footer-text">per person</span>
+                </p>
+                <p class="card__ratings">
+                    <span class="card__footer-value">{{ tour.ratingsAverage }}</span>
+                    <span class="card__footer-text">rating ({{tour.ratingsQuantity}})</span>
+                </p>
+                <a [routerLink]="['/store', tour._id]" class="btn btn--green btn--small">Details</a>
+            </div>
+        </div>
+    </div>
+</section>

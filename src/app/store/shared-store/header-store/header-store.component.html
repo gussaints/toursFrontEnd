@@ -1,0 +1,27 @@
+<header class="header">
+    <nav class="nav nav--tours">
+        <a (click)="sendRoute('/store')" class="nav__el">All tours</a>
+        <form class="nav__search">
+            <button class="nav__search-btn">
+          <svg>
+            <use xlink:href="../../../../assets/img/icons.svg#icon-search"></use>
+          </svg>
+        </button>
+            <input type="text" placeholder="Search tours" class="nav__search-input" />
+        </form>
+    </nav>
+    <div class="header__logo">
+        <img [src]="'logo-white.png' | images" alt="Natours logo" />
+    </div>
+    <nav class="nav nav--user">
+        <a class="nav__el" *ngIf="isLoggedIn" (click)="sendRoute('/store/me/bookings')">My bookings</a>
+        <a class="nav__el" *ngIf="isLoggedIn" (click)="sendRoute('/store/me/settings')">
+            <img [src]="myUser.photo | images" alt="User photo" class="nav__user-img" />
+            <span>{{myUser.name}}</span>
+        </a>
+        <a class="nav__el nav__el--logout" *ngIf="isLoggedIn" (click)="logout()">LogOut</a>
+
+        <button (click)="sendRoute('/store/login')" class="nav__el" *ngIf="!isLoggedIn">Log in</button>
+        <button (click)="sendRoute('/store/signup')" class="nav__el nav__el--cta" *ngIf="!isLoggedIn">Sign  up</button>
+    </nav>
+</header>

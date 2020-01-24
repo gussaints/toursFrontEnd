@@ -1,0 +1,72 @@
+<main class="main">
+    <div class="user-view">
+        <nav class="user-view__menu">
+            <ul class="side-nav">
+                <li routerLink="/store/me/settings" [routerLinkActive]="'side-nav--active'">
+                    <a href="" (click)="sendRoute('/store/me/settings')">
+                        <svg>
+                            <use xlink:href="assets/img/icons.svg#icon-settings"></use>
+                        </svg> Settings
+                    </a>
+                </li>
+                <li routerLink="/store/me/bookings" [routerLinkActive]="'side-nav--active'">
+                    <a href="" (click)="sendRoute('/store/me/bookings')">
+                        <svg>
+                            <use xlink:href="assets/img/icons.svg#icon-briefcase"></use>
+                        </svg> My bookings
+                    </a>
+                </li>
+                <li routerLink="/store/me/reviews" [routerLinkActive]="'side-nav--active'">
+                    <a href="" (click)="sendRoute('/store/me/reviews')">
+                        <svg>
+                            <use xlink:href="assets/img/icons.svg#icon-star"></use>
+                        </svg> My reviews
+                    </a>
+                </li>
+                <li routerLink="/store/me/billings" [routerLinkActive]="'side-nav--active'">
+                    <a href="" (click)="sendRoute('/store/me/billings')">
+                        <svg>
+                            <use xlink:href="assets/img/icons.svg#icon-credit-card"></use>
+                        </svg> Billing
+                    </a>
+                </li>
+            </ul>
+            <div class="admin-nav" *ngIf="user.role!=='client'">
+                <h5 class="admin-nav__heading">Admin</h5>
+                <ul class="side-nav">
+                    <li routerLink="/store/me/manage-tours" [routerLinkActive]="'side-nav--active'">
+                        <a href="" (click)="sendRoute('/store/me/manage-tours')">
+                            <svg class="card__icon">
+                                <use xlink:href="assets/img/icons.svg#icon-map"></use>
+                            </svg>Manage Tours
+                        </a>
+                    </li>
+                    <li routerLink="/store/me/manage-users" [routerLinkActive]="'side-nav--active'">
+                        <a href="" (click)="sendRoute('/store/me/manage-users')">
+                            <svg class="card__icon">
+                                <use xlink:href="assets/img/icons.svg#icon-users"></use>
+                            </svg>Manage Users
+                        </a>
+                    </li>
+                    <li routerLink="/store/me/manage-reviews" [routerLinkActive]="'side-nav--active'">
+                        <a href="" (click)="sendRoute('/store/me/manage-reviews')">
+                            <svg class="card__icon">
+                                <use xlink:href="assets/img/icons.svg#icon-star"></use>
+                            </svg>Manage reviews
+                        </a>
+                    </li>
+                    <li routerLink="/store/me/manage-bus" [routerLinkActive]="'side-nav--active'">
+                        <a href="" (click)="sendRoute('/store/me/manage-bus')">
+                            <svg class="card__icon">
+                                <use xlink:href="assets/img/icons.svg#icon-briefcase"></use>bookings
+                            </svg>Manage Bus
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="user-view__content">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</main>

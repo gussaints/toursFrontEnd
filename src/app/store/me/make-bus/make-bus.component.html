@@ -1,0 +1,75 @@
+<form class="form form-user-data" [formGroup]="myForm" name="meForm">
+    <div class="user-view__form-container">
+        <!-- <form class="form form-user-data" [formGroup]="myForm" name="meForm"> -->
+        <h2 class="heading-secondary ma-bt-md">
+            Bus information
+        </h2>
+        <div class="first-container">
+            <div class="form__group i0">
+                <label for="name" class="form__label">Name</label>
+                <input type="text" id="name" class="form__input" required name="name" formControlName="name">
+                <span class="alert--error--text" *ngIf="myForm.controls['name'].hasError('required')">
+                     Name is required!
+                </span>
+            </div>
+            <div class="form__group ma-bt-md i3">
+                <label for="qtyRows" class="form__label">Quantity Rows</label>
+                <input type="number" id="qtyRows" class="form__input" required name="qtyRows" formControlName="qtyRows">
+                <span class="alert--error--text" *ngIf="myForm.controls['qtyRows'].hasError('min') || myForm.controls['qtyRows'].hasError('max')">
+                    Must be more than 4 and less than 21
+                </span>
+            </div>
+            <div class="form__group ma-bt-md i3">
+                <label for="totalSeats" class="form__label">Total Seats</label>
+                <input type="number" id="totalSeats" class="form__input" required name="totalSeats" formControlName="totalSeats">
+                <span class="alert--error--text" *ngIf="myForm.controls['totalSeats'].hasError('min') || myForm.controls['totalSeats'].hasError('max')">
+                    Must be more than 19 and less than 61
+                </span>
+            </div>
+            <div class="form__group ma-bt-md i3">
+                <label for="num" class="form__label">Bus number</label>
+                <input type="number" id="num" class="form__input" required name="num" formControlName="num">
+                <span class="alert--error--text" *ngIf="myForm.controls['num'].hasError('min') || myForm.controls['num'].hasError('required')">
+                    This is required and must be more than one ( 1 )!
+                </span>
+            </div>
+        </div>
+
+    </div>
+    <div class="line">&nbsp;</div>
+    <div formArrayName="way2form">
+        <div class="user-view__form-container" *ngFor="let rowOne of way2formGroup.controls; let i = index;">
+            <h2 class="heading-secondary ma-bt-md">
+                Row {{ i + 1 }}
+            </h2>
+            <div [formGroupName]="i" class="row first-container">
+                <div class="form__group ma-bt-md i2">
+                    <label for="totalSeats{{i}}" class="form__label">Total Seats By Row</label>
+                    <input class="form__input" formControlName="totalSeats" type="number" id="totalSeats{{i}}" required name="totalSeats{{i}}">
+                    <span class="alert--error--text" *ngIf="getway2formGroup(i).controls['totalSeats'].hasError('min') || getway2formGroup(i).controls['totalSeats'].hasError('max')">
+                    Must be more than 1 and less than 5 </span>
+                </div>
+                <div class="form__group ma-bt-md i2">
+                    <label for="numRow" class="form__label">Number Row</label>
+                    <input class="form__input" formControlName="numRow" type="number" id="numRow" required name="numRow" disabled>
+                    <span class="alert--error--text" *ngIf="getway2formGroup(i).controls['numRow'].hasError('required')">
+                Number Row is required! </span>
+                </div>
+                <div class="form__group i1" *ngIf="(i+1) === way2formGroup.controls.length && (i+1) > 1">
+                    <button class="btn btn--small btn--save-password btn--green" (click)="removeRow(i)">Remove</button>
+                </div>
+            </div>
+            <div class="line">&nbsp;</div>
+        </div>
+    </div>
+    <div class="form__group">
+        <button class="btn btn--small btn--save-password btn--green" (click)="addRow()">Add Position</button>
+        <button class="btn btn--small btn--save-password btn--green" (click)="verifying()">
+            <!-- [ngClass]="{'btn--green':myForm.valid}" -->
+            Save Bus
+        </button>
+    </div>
+    <!-- <div class="line">&nbsp;</div>
+    <div class="user-view__form-container"></div>
+    <div class="line">&nbsp;</div> -->
+</form>

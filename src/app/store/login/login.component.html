@@ -1,0 +1,20 @@
+<main class="main" id="main">
+    <div class="login-form">
+        <h2 class="heading-secondary ma-bt-lg">
+            Log into your account
+        </h2>
+        <form class="form form--login" name="loginForm" [formGroup]="loginForm">
+            <div class="form__group">
+                <label class="form__label" for="email">Email address</label>
+                <input class="form__input" id="email" type="email" placeholder="you@example.com" required formControlName="email">
+            </div>
+            <div class="form__group ma-bt-md">
+                <label class="form__label" for="password">Password</label>
+                <input class="form__input" id="password" type="password" placeholder="••••••••" required minlength="8" formControlName="password">
+            </div>
+            <div class="form__group">
+                <button class="btn" [disabled]="!loginForm.valid" (click)="sendLogin()" [ngClass]="{'btn--green':loginForm.valid}">Login</button>
+            </div>
+        </form>
+    </div>
+</main>

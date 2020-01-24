@@ -19,7 +19,12 @@
     "@angular/platform-browser": "~8.2.13",
     "@angular/platform-browser-dynamic": "~8.2.13",
     "@angular/router": "~8.2.13",
+    "@types/mapbox-gl": "^1.6.2",
+    "mapbox-gl": "^1.6.1",
+    "ngx-cookie-service": "^2.3.0",
     "rxjs": "~6.4.0",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^9.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
   },
